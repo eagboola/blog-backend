@@ -1,0 +1,6 @@
+PATCH http://localhost:3000/api/blogs/699e239f1df0d950974209a3
+Content-Type: application/json
+
+{
+  "title": "A title"
+}
