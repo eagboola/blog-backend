@@ -2,7 +2,7 @@
 import BlogModel from "../models/Blog.js";
 import type { BlogEdits, BlogEditProps, RawBlog, Blog } from "../types/blog.js";
 import type { Request, Response } from "express";
-import { extractBlogEditProps } from "../utils/controller-utils.js";
+import { extractBlogEditData } from "../utils/controller-utils.js";
 import mongoose from "mongoose"
 const { ValidationError } = mongoose.Error;   // Not available to import as module, must be destructured.
 
@@ -65,14 +65,8 @@ export async function getBlogById(req: Request, res: Response) {
 export async function updateBlog(req: Request, res: Response) {
   try {
     const { id } = req.params;
-    const edits: BlogEdits = {};
-    const props: Array<BlogEditProps> = ['title', 'content', 'author'];
     
-    for (let prop of props) {
-      if (prop in req.body && typeof req.body[prop] === 'string') {
-        edits[prop] = req.body[prop];
-      }
-    }
+    const edits: BlogEdits = extractBlogEditData(req.body);
     
     // Update blog corresponding to `id`.
     // Use `edits` existing on request body to guarantee only making new changes.
