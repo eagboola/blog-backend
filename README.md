@@ -48,3 +48,20 @@
 - content: string
 
 - author? (string, default to "anonymous")
+
+
+## Importing TypeScript Modules
+
+> Problem: trying to import a ts module us `.ts` extension.
+
+`import BlogModel from "../models/Blog.ts"`
+Raises an error: "An import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled."
+
+> Solution: use `.js` extensions with `"module": "nodenext"` config option.
+
+`import BlogModel from "../models/Blog.js`
+This is actually the recommended approach when transpiling to JavaScript.
+TS will check for `Blog.ts` when type-checking and reference the correct `Blog.js` file after transpilation/at runtime.
+( `"module": "nodenext"` should already be enabled in default `tsconfig.json` when generated with `tsc --init` )
+
+Using the approach suggested by the error message, setting `"allowImportingTsExtension": true` in `tsconfig.json`, implies no transpilation will take place.
