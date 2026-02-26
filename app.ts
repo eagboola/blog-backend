@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import BlogRoutes from './routes/blogRoutes.ts';
+import BlogRoutes from './routes/blog-routes.js';
 
 const app = express();
 
