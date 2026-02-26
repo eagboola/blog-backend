@@ -8,6 +8,8 @@
   "main": "server.ts",
   "scripts": {
     "test": "vitest",
+    "dev": "tsx watch server.ts",
+    "build": "echo no build script created yet"
   },
   "dependencies": {
     "@types/cors": "^2.8.19",
@@ -18,7 +20,7 @@
     "typescript": "^5.9.3"
   },
   "devDependencies": {
-    "@types/express": "^5.0.6"
+    "@types/express": "^5.0.6",
     "@types/supertest": "^6.0.3",
     "mongodb-memory-server": "^11.0.1",
     "supertest": "^7.2.2",
